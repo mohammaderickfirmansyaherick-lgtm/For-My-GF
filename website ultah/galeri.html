@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kita ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Tombol Kembali */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+            transition: 0.3s;
+            z-index: 999;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.55);
+            transform: scale(1.05);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 2rem;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 5px;
+            scroll-behavior: smooth;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gallery img {
+            width: 260px;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .caption {
+            margin-top: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .end {
+            margin-top: 35px;
+            font-size: 1.25rem;
+            opacity: 0;
+            animation: fadeIn 3s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -10px;
+            width: 18px;
+            height: 18px;
+            background: #ff477e;
+            opacity: 0.65;
+            animation: floatUp 6s infinite ease-in-out;
+            clip-path: polygon(50% 75%, 61% 61%, 75% 50%, 88% 35%, 88% 20%,
+                                75% 8%, 61% 8%, 50% 20%, 39% 8%, 25% 8%,
+                                12% 20%, 12% 35%, 25% 50%, 39% 61%);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.7; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Tombol Back -->
+    <a href="javascript:history.back()" class="back-btn">← Kembali</a>
+
+    <h2>Kenangan Kita ❤️</h2>
+
+    <div class="gallery">
+
+        <div class="item">
+            <img src="assets/Nemenin dia ke kampus.jpeg" alt="Foto 1">
+            <div class="caption">Waktu aku nemenin kamu ke kampus 💗</div>
+        </div>
+
+        <div class="item">
+            <img src="assets/Dia Mode Centil.jpeg" alt="Foto 2">
+            <div class="caption">Mode centil kamu yang bikin aku senyum terus 😳</div>
+        </div>
+
+        <div class="item">
+            <img src="assets/Dia Jajan.jpeg" alt="Foto 3">
+            <div class="caption">Kamu yang paling lucu kalau lagi jajan 🥺✨</div>
+        </div>
+
+        <div class="item">
+            <img src="assets/Pak No Date.jpeg" alt="Foto 4">
+            <div class="caption">Date kita sama Pak No 🤣❤️</div>
+        </div>
+
+        <div class="item">
+            <img src="assets/Seblak.jpeg" alt="Foto 5">
+            <div class="caption">Momen seblak favorit kamu 🔥</div>
+        </div>
+
+        <div class="item">
+            <img src="assets/Dua Insan.jpeg" alt="Foto 6">
+            <div class="caption">Dua insan yang selalu saling nemuin 💘</div>
+        </div>
+
+        <div class="item">
+            <img src="assets/Mata Yang Cantik.jpeg" alt="Foto 7">
+            <div class="caption">Mata kamu yang selalu bikin aku jatuh lagi 💞</div>
+        </div>
+
+        <div class="item">
+            <img src="assets/Belanja.jpeg" alt="Foto 8">
+            <div class="caption">Belanja bareng, favoritku setiap saat 🛒❤️</div>
+        </div>
+
+    </div>
+
+    <p class="end">
+        Aku cuma mau bilang…  
+        <br><strong>Aku sayang banget sama kamu.</strong>  
+        <br>Selamat ulang tahun ya, cinta. ❤️  
+        <br><br>— Dari aku yang selalu milih kamu dulu, sekarang, dan nanti.
+    </p>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 7000);
+        }
+        setInterval(createHeart, 350);
+    </script>
+
+</body>
+</html>

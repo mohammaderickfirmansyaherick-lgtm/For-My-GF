@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan untuk Kamu</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffe6ee;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .navbar {
+            width: 100%;
+            padding: 15px;
+            background: #ff8fa3;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 20;
+            box-shadow: 0 2px 10px rgba(255,0,80,0.3);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            opacity: 0.7;
+        }
+
+        .card {
+            background: white;
+            color: #333;
+            padding: 30px;
+            margin: 110px auto 0;
+            width: 85%;
+            max-width: 520px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 0, 100, 0.25);
+            position: relative;
+            z-index: 10;
+            animation: fadeSlide 1.2s ease-out;
+        }
+
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #ff4f7b;
+        }
+
+        .heart {
+            position: fixed;
+            top: -10px;
+            color: #ff4f7b;
+            font-size: 20px;
+            animation: fall linear forwards;
+            opacity: 0.9;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Tombol love */
+        .love-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #ff4f7b;
+            color: white;
+            border: none;
+            font-size: 18px;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255,0,100,0.3);
+            transition: 0.2s;
+        }
+
+        .love-btn:hover {
+            transform: scale(1.08);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a onclick="transitionTo('pesan.html')">Pesan</a>
+        <a onclick="transitionTo('Galeri.html')">Foto Kita</a>
+    </div>
+
+    <div class="card">
+        <h1>Selamat Ulang Tahun ❤️</h1>
+        <p>
+            Kamu itu istimewa buat aku…
+            Di hari spesial ini, aku cuma mau bilang…
+            kamu itu luar biasa, dan aku beruntung bisa punya kamu.  
+            Semoga semua hal baik selalu menghampiri hidupmu.  
+            Aku sayang kamu, lebih dari yang bisa aku tulis di sini. ❤️  
+            Semoga hari ini penuh kebahagiaan buat kamu ❤️  
+            Terima kasih sudah hadir di hidup aku .
+        </p>
+
+        <button class="love-btn" onclick="showFloatingHearts()">I Love You ❤️</button>
+    </div>
+
+    <script>
+        // fallback audio
+        document.addEventListener("click", () => {
+            const audio = document.getElementById("bgm");
+            if (audio.paused) audio.play();
+        });
+
+        // Love jatuh
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 7000);
+        }
+        setInterval(createHeart, 300);
+
+        // Transisi pindah halaman (fade-out)
+        function transitionTo(page) {
+            document.body.style.animation = "fadeOut 0.8s forwards";
+            setTimeout(() => {
+                window.location.href = page;
+            }, 700);
+        }
+
+        // fadeOut animasi
+        const style = document.createElement('style');
+        style.innerHTML = `
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }`;
+        document.head.appendChild(style);
+
+        // Tombol love → muncul love terbang ke atas
+        function showFloatingHearts() {
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.style.position = "fixed";
+                heart.style.bottom = "30px";
+                heart.style.left = (50 + Math.random() * 20 - 10) + "vw";
+                heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+                heart.style.opacity = "0.9";
+                heart.style.transition = "2s";
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.style.transform = "translateY(-200px)";
+                    heart.style.opacity = 0;
+                }, 50);
+
+                setTimeout(() => heart.remove(), 2200);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
